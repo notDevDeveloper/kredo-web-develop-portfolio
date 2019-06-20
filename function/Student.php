@@ -10,7 +10,17 @@ require 'Connection.php';
                     VALUES ('$student_name', '$student_email', '$student_pass', '$student_confirmpass', 'Student')" ;
                     $result = $this->conn->query($sql);
                     return $result;
-            
+            }
+            public function displayOneStudent($id){
+                $sql = "SELECT * FROM user WHERE user_id = '$id' ";
+                $result = $this->conn->query($sql);
+                $row = $result->fetch_assoc();
+                return $row;
+            }
+            public function deleteStudent($id){
+
+                $sql = "DELETE FROM user WHERE user_id = '$id' ";
+                $result = $this->conn->query($sql);
             }
         
     }

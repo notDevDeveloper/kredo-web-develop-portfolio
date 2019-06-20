@@ -62,6 +62,19 @@ require 'Connection.php';
             }
             return $rows;
         }
+        public function displayUserCount(){
+            $sql = "SELECT COUNT(*) AS student FROM user WHERE user_type = 'Student'";
+            $result = $this->conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row;
+        }
+        public function displayTeacherCount(){
+            $sql = "SELECT COUNT(*) AS teacher FROM teacher";
+            $result = $this->conn->query($sql);
+            $row = $result->fetch_assoc();
+            return $row;
+        }
+        
         
     }
 

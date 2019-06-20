@@ -114,6 +114,11 @@ require 'Connection.php';
             $row = $result->fetch_assoc();
             return $row;
         }
+        public function deleteTeacher($id){
+
+            $sql = "DELETE FROM teacher WHERE teacher_id = '$id' ";
+            $result = $this->conn->query($sql);
+        }
     }
 
 

@@ -7,6 +7,11 @@ if(empty($_SESSION)){
 echo "Welcome ".$_SESSION['name'].".Please help yourself";
 echo "<a href='logout.php'>Logout</a>";
 
+require 'function/Stock.php';
+$stock = new Stock;
+$students = $stock->displayUserCount();
+$teachers = $stock->displayTeacherCount();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -279,7 +284,7 @@ echo "<a href='logout.php'>Logout</a>";
 		          <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                 <div class="block-18 p-5 bg-light">
                   <div class="text">
-                    <strong class="number" style = "color : #fc602f;" data-number="500">0</strong>
+                    <strong class="number" style = "color : #fc602f;" data-number="200">0</strong>
 		                <span>Happy Students</span>
 		              </div>
 		            </div>
@@ -287,16 +292,16 @@ echo "<a href='logout.php'>Logout</a>";
 		          <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                 <div class="block-18 p-5 bg-light">
                   <div class="text">
-                    <strong class="number" style = "color : #fc602f;" data-number="20">0</strong>
-		                <span>Number of Teachers</span>
+                    <strong class="number" style = "color : #fc602f;" data-number="<?php echo $students['student']; ?>"></strong>
+		                <span>Number of Students</span>
 		              </div>
 		            </div>
 		          </div>
 		          <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
                 <div class="block-18 p-5 bg-light">
                   <div class="text">
-                    <strong class="number" style = "color : #fc602f;" data-number="35">0</strong>
-		                <span>Number of Staffs</span>
+                    <strong class="number" style = "color : #fc602f;" data-number="<?php echo $teachers['teacher']; ?>">0</strong>
+		                <span>Number of Teachers</span>
 		              </div>
 		            </div>
 		          </div>

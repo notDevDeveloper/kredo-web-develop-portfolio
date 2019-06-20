@@ -8,8 +8,10 @@ if(empty($_SESSION)){
 echo "Welcome ".$_SESSION['name'].".Please help yourself";
 echo "<a href='logout.php'>Logout</a>";
 
-
-
+require 'function/Stock.php';
+$stock = new Stock;
+$students = $stock->displayUserCount();
+$teachers = $stock->displayTeacherCount();
 
 ?>
 <!DOCTYPE html>
@@ -102,7 +104,7 @@ echo "<a href='logout.php'>Logout</a>";
           <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-6 text ftco-animate">
             <h1 class="mb-4" style = "color: #fc602f " >Helping Your <span>Study Life</span></h1>
-            <h3 class="subheading">Everyday We Bring Hope and Smile to the Student We Serve</h3>
+            <!-- <h3 class="subheading">Everyday We Bring Hope and Smile to the Student We Serve</h3> -->
             <!-- <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">View our works</a></p> -->
           </div>
         </div>
@@ -115,7 +117,7 @@ echo "<a href='logout.php'>Logout</a>";
           <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-6 text ftco-animate">
             <h1 class="mb-4" style = "color: #fc602f ">We Care <span>About Your Study</span></h1>
-            <h3 class="subheading">Your Mind is Our Top Priority with Comprehensive, Affordable medical.</h3>
+            <!-- <h3 class="subheading">Your Mind is Our Top Priority with Comprehensive, Affordable medical.</h3> -->
             <!-- <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">View our works</a></p> -->
           </div>
         </div>
@@ -214,7 +216,7 @@ echo "<a href='logout.php'>Logout</a>";
 					<div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate" style = "background-color: #fc762f " >
 						<div class="media block-6 d-block text-center" >
 							<div class="icon d-flex justify-content-center align-items-center">
-								<span class="fas fa-briefcase"></span>
+								<span class="fas fa-chalkboard-teacher"></span>
 							</div>
 							<div class="media-body p-2 mt-3" >
 								<h3 class="heading">Qualitfied Teachers</h3>
@@ -861,7 +863,7 @@ echo "<a href='logout.php'>Logout</a>";
 		          <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 p-5 bg-light">
 		              <div class="text">
-		                <strong class="number" style = "color : #fc602f;"  data-number="500">0</strong>
+		                <strong class="number" style = "color : #fc602f;"  data-number="200">0</strong>
 		                <span>Happy Students</span>
 		              </div>
 		            </div>
@@ -869,16 +871,16 @@ echo "<a href='logout.php'>Logout</a>";
 		          <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 p-5 bg-light">
 		              <div class="text">
-		                <strong class="number" style = "color : #fc602f;" data-number="20">0</strong>
-		                <span>Number of Teachers</span>
+		                <strong class="number" style = "color : #fc602f;" data-number="<?php echo $students['student']; ?>">0</strong>
+		                <span>Number of Student</span>
 		              </div>
 		            </div>
 		          </div>
 		          <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 p-5 bg-light">
 		              <div class="text">
-		                <strong class="number" style = "color : #fc602f;" data-number="35">0</strong>
-		                <span>Number of Staffs</span>
+		                <strong class="number" style = "color : #fc602f;" data-number="<?php echo $teachers['teacher']; ?>">0</strong>
+		                <span>Number of Teachers</span>
 		              </div>
 		            </div>
 		          </div>

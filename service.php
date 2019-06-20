@@ -131,7 +131,7 @@ echo "<a href='logout.php'>Logout</a>";
 	              <div class="tab-pane py-2 fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
 	              	<div class="row departments">
 	              		<div class="col-lg-4 order-lg-last d-flex align-items-stretch">
-	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/dept-1.jpg);"></div>
+	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/reading.jpeg);"></div>
 	              		</div>
 	              		<div class="col-lg-8">
 	              			<h2>Reading</h2>
@@ -182,7 +182,7 @@ echo "<a href='logout.php'>Logout</a>";
 	              <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
 	              	<div class="row departments">
 	              		<div class="col-lg-4 order-lg-last d-flex align-items-stretch">
-	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/dept-2.jpg);"></div>
+	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/listening.jpeg);"></div>
 	              		</div>
 	              		<div class="col-md-8">
 	              			<h2>Listening</h2>
@@ -231,7 +231,7 @@ echo "<a href='logout.php'>Logout</a>";
 	              <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
 	              	<div class="row departments">
 	              		<div class="col-lg-4 order-lg-last d-flex align-items-stretch">
-	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/dept-3.jpg);"></div>
+	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/speaking.jpg);"></div>
 	              		</div>
 	              		<div class="col-md-8">
 	              			<h2>Speaking</h2>
@@ -281,7 +281,7 @@ echo "<a href='logout.php'>Logout</a>";
 	              <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-day-4-tab">
 	              	<div class="row departments">
 	              		<div class="col-lg-4 order-lg-last d-flex align-items-stretch">
-	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/dept-4.jpg);"></div>
+	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/writing.jpeg);"></div>
 	              		</div>
 	              		<div class="col-md-8">
 	              			<h2>Writting</h2>
@@ -331,7 +331,7 @@ echo "<a href='logout.php'>Logout</a>";
 	              <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-day-5-tab">
 	              	<div class="row departments">
 	              		<div class="col-lg-4 order-lg-last d-flex align-items-stretch">
-	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/dept-5.jpg);"></div>
+	              			<div class="img d-flex align-self-stretch" style="background-image: url(images/business.jpg);"></div>
 	              		</div>
 	              		<div class="col-md-8">
 	              			<h2>Business</h2>
