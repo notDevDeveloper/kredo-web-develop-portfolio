@@ -863,7 +863,7 @@ $teachers = $stock->displayTeacherCount();
 		          <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 p-5 bg-light">
 		              <div class="text">
-		                <strong class="number" style = "color : #fc602f;"  data-number="200">0</strong>
+		                <strong class="number" style = "color : #fc602f;"  data-number="100">0</strong>
 		                <span>Happy Students</span>
 		              </div>
 		            </div>
