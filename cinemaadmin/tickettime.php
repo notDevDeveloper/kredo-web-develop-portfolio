@@ -2,12 +2,13 @@
 
 $id = $_GET['movie_id'];
 $date = $_GET['date'];
+$date2 = date("w" , strtotime($date));
 
 require 'functions/movieadmin.php';
 $movie = new Movie;
 $oneMovie = $movie->displayOneMovie($id);
 
-$movieTime = $movie->displayMovieTime($id);
+$movieTime = $movie->displayMovieTime3($id,$date2);
 
 
 
@@ -48,20 +49,23 @@ $movieTime = $movie->displayMovieTime($id);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     
-  <style>
+    <style>
+      .title{
+          margin:5% 0 -3% 0;
+      }
     .finish{
       color:rgb(158, 158, 158);
-      padding-left:20%;
+      /* padding-left:30%; */
     }
     .col-3{
-      padding:5% 10% 5% 5%;
+      padding:5% 0;
+      text-align:center;
+      /* padding:5% 10% 3% 6%; */
     }
-    .text-black{
-        color:black;
-        font-weight:bold;
-        margin-left:-13%;
+    .font{
+      /* margin-left:54%;
+      margin-top:5%; */
     }
-    
   </style>
     
     <title>admin</title>
@@ -71,11 +75,11 @@ $movieTime = $movie->displayMovieTime($id);
         <a href="admin.php"><button class="btn btn-outline-primary my-3">back</button></a>
         <div class="row">
         <div class="col-lg-8">
-        <h2 class="text-white py-3">Choose the date</h2>
+        <h2 class="text-white py-3">Choose the Time</h2>
 
             <div class="row mt-3 ml-3">
             <?php
-            echo "<div class='col-3 bg-white'><a href='displayticket.php?id=".$oneMovie['movie_id']."&date=".$date."&time=".$movieTime['movie_start1']." '>";
+            echo "<div class='col-3 bg-white m-2'><a href='displayticket.php?id=".$oneMovie['movie_id']."&date=".$date."&time=".$movieTime['movie_start1']." '>";
             echo "<h3 class='text-black'>".$movieTime['movie_start1']."</h5>"; 
             echo "<h6 class='finish'> ~".$movieTime['movie_finish1']."</h6>";
          echo "</a></div>";

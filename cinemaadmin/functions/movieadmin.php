@@ -81,6 +81,17 @@ class Movie extends Database {
         $row = $result->fetch_assoc();
         return $row;
     }
+    public function displayMovieTime3($id,$date){
+        $sql = "SELECT * FROM movie_schedule WHERE movie_id = '$id' and movie_plan = '$date'";
+        $result = $this->conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row;
+        // $rows = array();
+        // while($row = $result->fetch_assoc()){
+        //       $rows[]= $row;
+        // }
+        // return $rows;
+    }
 }
 
 

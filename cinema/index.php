@@ -5,6 +5,81 @@ $movie = new Movie;
 $movies = $movie->displayMovies();
 $oneMovie = $movie->displayOneMovie($id);
 
+$total1 = 0;
+$total2 = 0;
+$total3 = 0;
+$total4 = 0;
+$x=0;
+
+
+foreach($movies as $key => $values){
+   $movie_id = $values['movie_id'];
+  
+   for ($i = -6; $i < 1; $i++) {
+        
+        $date = date("w", strtotime("+$i day"));
+        $day = date("Y/m/d", strtotime("+$i day"));
+        $movieTime = $movie->displayMovieTime3($movie_id,$date);
+
+        $time = $movieTime['movie_start1'];
+        $ticketInfo = $movie->displayTicketInfo($movie_id,$day,$time);
+        foreach($ticketInfo as $key => $values){
+            $total1 = $total1 + $values['ticket_total'];
+        }
+        
+        $time = $movieTime['movie_start2'];
+        $ticketInfo = $movie->displayTicketInfo($movie_id,$day,$time);
+        foreach($ticketInfo as $key => $values){
+            $total2 = $total2 + $values['ticket_total'];
+        }
+        
+        $time = $movieTime['movie_start3'];
+        $ticketInfo = $movie->displayTicketInfo($movie_id,$day,$time);
+        foreach($ticketInfo as $key => $values){
+            $total3 = $total3 + $values['ticket_total'];
+        }
+        
+        $time = $movieTime['movie_start4'];
+        $ticketInfo = $movie->displayTicketInfo($movie_id,$day,$time);
+        foreach($ticketInfo as $key => $values){
+            $total4 = $total4 + $values['ticket_total'];
+        }
+        
+        $daytotal1 = $total1 + $total2 + $total3 + $total4;
+        $daytotal[] = $daytotal1;
+        
+        $total1 = 0;
+        $total2 = 0;
+        $total3 = 0;
+        $total4 = 0;
+    }
+    
+    $weektotal = 0;
+    for ($i = 0; $i < 7; $i++) {
+        
+        $weektotal = $weektotal + $daytotal[$x];
+        $x++;
+    }
+   
+    $record[] = array("weektotal"=>$weektotal,"movie_id"=>$movie_id) ;
+}
+
+
+arsort($record);
+
+//echo $record;
+foreach($record as $key => $values){
+  $ranking[] = $values['movie_id'];
+}
+$id = $ranking[0]; 
+$oneMovie1 = $movie->displayOneMovie($id);
+$id = $ranking[1]; 
+$oneMovie2 = $movie->displayOneMovie($id);
+$id = $ranking[2]; 
+$oneMovie3 = $movie->displayOneMovie($id);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +132,7 @@ $oneMovie = $movie->displayOneMovie($id);
         <div class="container py-1">
           <div class="row align-items-center">
             <div class="col-8 col-md-8 col-lg-4">
-              <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>Cinema<span class="text-primary">.</span></strong></a></h1>
+              <h1 class="mb-0"><a href="index.php" class="text-white h2 mb-0"><strong>Cinema<span class="text-primary">.</span></strong></a></h1>
             </div>
             <div class="col-4 col-md-4 col-lg-8">
               <nav class="site-navigation text-right text-md-right" role="navigation">
@@ -68,7 +143,6 @@ $oneMovie = $movie->displayOneMovie($id);
                   <li class="active">
                     <a href="index.php">Home</a>
                   </li>
-                  <!-- <li><a href="dj.html">DJs</a></li> -->
                   <li class="has-children">
                     <a href="#">Movie</a>
                     <ul class="dropdown arrow-top">
@@ -76,20 +150,12 @@ $oneMovie = $movie->displayOneMovie($id);
                       <li><a href="nowplaying.php">Now Playing</a></li>
                       <li><a href="#">Coming Soon</a></li>
                       <li><a href="ranking.php">Ranking</a></li>
-                      <!-- <li class="has-children">
-                        <a href="#">Sub Menu</a>
-                        <ul class="dropdown">
-                          <li><a href="#">Menu One</a></li>
-                          <li><a href="#">Menu Two</a></li>
-                          <li><a href="#">Menu Three</a></li>
-                        </ul>
-                      </li> -->
                     </ul>
                   </li>
                   <li><a href="events.html">News</a></li>
                   <li><a href="about.html">About</a></li>
                   <li><a href="contact.html">Contact</a></li>
-                  <li><a href="login.html">Login</a></li>
+                  
                 </ul>
               </nav>
             </div>
@@ -260,33 +326,33 @@ $oneMovie = $movie->displayOneMovie($id);
         </div>
         
         <div class="site-block-retro d-block d-md-flex">
+        <?php 
+          echo "<a href='single.php?id=".$oneMovie1['movie_id']."' class='col1 unit-9 no-height' data-aos='fade-up' data-aos-delay='100'>";
+            echo  "<div class='image' style='background-image: url(".$oneMovie1['movie_image'].")'></div>";
+            echo "<div class='unit-9-content'>";
+            echo  "<h2>Top 1 : ".$oneMovie1['movie_title']."</h2>";
+            echo  "<span>Friday 1:00pm &mdash; 2:30pm</span>";
+            echo "</div>";
+          echo "</a> ";
+        
+          echo "<div class='col2 ml-auto'>";
 
-          <a href="#" class="col1 unit-9 no-height" data-aos="fade-up" data-aos-delay="100">
-            <div class="image" style="background-image: url('images/img_2.jpg');"></div>
-            <div class="unit-9-content">
-              <h2>Classic Songs For Classic People</h2>
-              <span>Friday 1:00pm &mdash; 2:30pm</span>
-            </div>
-          </a>
+            echo "<a href='single.php?id=".$oneMovie2['movie_id']."' class='col2-row1 unit-9 no-height' data-aos='fade-up' data-aos-delay='200'>";
+              echo "<div class='image' style='background-image: url(".$oneMovie2['movie_image'].");'></div>";
+              echo "<div class='unit-9-content'>";
+                echo "<h2>Top 2 : ".$oneMovie2['movie_title']."</h2>";
+                echo "<span>Friday 1:00pm &mdash; 2:30pm</span>";
+              echo "</div>";
+            echo "</a>";
 
-          <div class="col2 ml-auto">
-
-            <a href="#" class="col2-row1 unit-9 no-height" data-aos="fade-up" data-aos-delay="200">
-              <div class="image" style="background-image: url('images/img_3.jpg');"></div>
-              <div class="unit-9-content">
-                <h2>Classic Songs For Classic People</h2>
-                <span>Friday 1:00pm &mdash; 2:30pm</span>
-              </div>
-            </a>
-
-            <a href="#" class="col2-row2 unit-9 no-height" data-aos="fade-up" data-aos-delay="300">
-              <div class="image" style="background-image: url('images/img_1.jpg');"></div>
-              <div class="unit-9-content">
-                <h2>Classic Songs For Classic People</h2>
-                <span>Friday 1:00pm &mdash; 2:30pm</span>
-              </div>
-            </a>
-
+            echo "<a href='single.php?id=".$oneMovie3['movie_id']."' class='col2-row2 unit-9 no-height' data-aos='fade-up' data-aos-delay='300'>";
+              echo "<div class='image' style='background-image: url(".$oneMovie3['movie_image'].");'></div>";
+              echo "<div class='unit-9-content'>";
+                echo "<h2>Top 3 : ".$oneMovie3['movie_title']."</h2>";
+                echo "<span>Friday 1:00pm &mdash; 2:30pm</span>";
+              echo "</div>";
+            echo "</a>";
+            ?>
           </div>
 
         </div>

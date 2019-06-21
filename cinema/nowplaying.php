@@ -64,31 +64,23 @@ $movies = $movie->displayMovies();
                   class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
                   <ul class="site-menu js-clone-nav d-none d-lg-block">
-                    <li >
-                      <a href="index.html">Home</a>
-                    </li>
-                    <!-- <li><a href="dj.html">DJs</a></li> -->
-                    <li class="has-children active">
-                      <a href="shows.php">Movie</a>
-                      <ul class="dropdown arrow-top">
-                        <li><a href="nowplaying.php">Now Playing</a></li>
-                        <li><a href="#">Coming Soon</a></li>
-                        <li><a href="#">Ranking</a></li>
-                        <!-- <li class="has-children">
-                          <a href="#">Sub Menu</a>
-                          <ul class="dropdown">
-                            <li><a href="#">Menu One</a></li>
-                            <li><a href="#">Menu Two</a></li>
-                            <li><a href="#">Menu Three</a></li>
-                          </ul>
-                        </li> -->
-                      </ul>
-                    </li>
-                    <li><a href="events.html">News</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html">Login</a></li>
-                  </ul>
+                  <li class="">
+                    <a href="index.php">Home</a>
+                  </li>
+                  <li class="active has-children">
+                    <a href="#">Movie</a>
+                    <ul class="dropdown arrow-top">
+                      <li><a href="selectdate.php">Schedule</a></li>
+                      <li><a href="nowplaying.php">Now Playing</a></li>
+                      <li><a href="#">Coming Soon</a></li>
+                      <li><a href="ranking.php">Ranking</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="events.html">News</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  
+                </ul>
             </nav>
           </div>
         </div>

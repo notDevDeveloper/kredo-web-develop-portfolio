@@ -17,7 +17,7 @@
     <div class="container">
         <a href="addmovie.php" class="btn btn-primary mt-5"><h2>addmovie</h2></a>
         <a href="addschedule.php" class="btn btn-primary mt-5 ml-3"><h2>addschedule</h2></a>
-        <a href="ticketinfo.php" class="btn btn-primary mt-5 ml-3"><h2>ticketinfo</h2></a>
+        <a href="ticketinfo.php" class="btn btn-primary mt-5 ml-3"><h2>ticket</h2></a>
     </div>
 </body>
 </html>

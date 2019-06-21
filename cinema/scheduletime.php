@@ -82,32 +82,25 @@ $movieTime = $movie->displayMovieTime3($id,$plan);
               <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#"
                   class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
-                  <ul class="site-menu js-clone-nav d-none d-lg-block">
-                    <li >
-                      <a href="index.php">Home</a>
-                    </li>
-                    <!-- <li><a href="dj.html">DJs</a></li> -->
-                    <li class="has-children active">
-                      <a href="#">Movie</a>
-                      <ul class="dropdown arrow-top">
-                        <li><a href="nowplaying.php">Now Playing</a></li>
-                        <li><a href="comingsoon.php">Coming Soon</a></li>
-                        <li><a href="ranking.php">Ranking</a></li>
-                        <!-- <li class="has-children">
-                          <a href="#">Sub Menu</a>
-                          <ul class="dropdown">
-                            <li><a href="#">Menu One</a></li>
-                            <li><a href="#">Menu Two</a></li>
-                            <li><a href="#">Menu Three</a></li>
-                          </ul>
-                        </li> -->
-                      </ul>
-                    </li>
-                    <li><a href="events.html">News</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html">Login</a></li>
-                  </ul>
+                  
+                      <ul class="site-menu js-clone-nav d-none d-lg-block">
+                  <li class="active">
+                    <a href="index.php">Home</a>
+                  </li>
+                  <li class="has-children">
+                    <a href="#">Movie</a>
+                    <ul class="dropdown arrow-top">
+                      <li><a href="selectdate.php">Schedule</a></li>
+                      <li><a href="nowplaying.php">Now Playing</a></li>
+                      <li><a href="#">Coming Soon</a></li>
+                      <li><a href="ranking.php">Ranking</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="events.html">News</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  
+                </ul>
             </nav>
           </div>
         </div>
@@ -163,7 +156,7 @@ $movieTime = $movie->displayMovieTime3($id,$plan);
                   echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
                }elseif($total1<=8){
                   echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                  echo "<h5 class='ml-4'>left :".(10-$total1)."</h5>";
+                  echo "<h5 class=''>left :".(10-$total1)."</h5>";
                }elseif($total1==9){
                   echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
                   echo "<h5 class=''>left :1</h5>";
@@ -188,7 +181,7 @@ $movieTime = $movie->displayMovieTime3($id,$plan);
                   echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
                }elseif($total2<=8){
                   echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                  echo "<h5 class='ml-4'>left :".(10-$total2)."</h5>";
+                  echo "<h5 class=''>left :".(10-$total2)."</h5>";
                }elseif($total2==9){
                   echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
                   echo "<h5 class=''>left :".(10-$total2)."</h5>>";
@@ -214,7 +207,7 @@ $movieTime = $movie->displayMovieTime3($id,$plan);
                   echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
                }elseif($total3<=8){
                   echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                  echo "<h5 class='ml-4'>left :".(10-$total3)."</h5>";
+                  echo "<h5 class=''>left :".(10-$total3)."</h5>";
                }elseif($total3==9){
                   echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
                   echo "<h5 class=''>left :".(10-$total3)."</h5>";
@@ -240,7 +233,7 @@ $movieTime = $movie->displayMovieTime3($id,$plan);
                   echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
                }elseif($total4<=8){
                   echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                  echo "<h5 class='ml-4'>left :".(10-$total4)."</h5>";
+                  echo "<h5 class=''>left :".(10-$total4)."</h5>";
                }elseif($total4==9){
                   echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
                   echo "<h5 class=''>left :".(10-$total4)."</h5>";

@@ -9,6 +9,10 @@ require 'functions/movie.php';
 $movie = new Movie;
 
 $total = 0;
+$total1 = 0;
+$total2 = 0;
+$total3 = 0;
+$total4 = 0;
 $oneMovie = $movie->displayOneMovie($movie_id);
 $movieTime = $movie->displayMovieTime2($date);
 //$timeNull = 00:00:00;
@@ -50,14 +54,16 @@ $movieTime = $movie->displayMovieTime2($date);
       }
     .finish{
       color:rgb(158, 158, 158);
-      padding-left:30%;
+      /* padding-left:30%; */
     }
     .col-3{
-      padding:5% 10% 3% 6%;
+      padding:5% 0;
+      text-align:center;
+      /* padding:5% 10% 3% 6%; */
     }
     .font{
-      margin-left:54%;
-      margin-top:5%;
+      /* margin-left:54%;
+      margin-top:5%; */
     }
   </style>
 
@@ -73,7 +79,7 @@ $movieTime = $movie->displayMovieTime2($date);
       <div class="container py-1">
         <div class="row align-items-center">
           <div class="col-8 col-md-8 col-lg-4">
-            <h1 class="mb-0"><a href="index.php" class="text-white h2 mb-0"><strong>Deejee<span
+            <h1 class="mb-0"><a href="index.php" class="text-white h2 mb-0"><strong>Cinema<span
                     class="text-primary">.</span></strong></a></h1>
           </div>
           <div class="col-4 col-md-4 col-lg-8">
@@ -83,31 +89,23 @@ $movieTime = $movie->displayMovieTime2($date);
                   class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
                   <ul class="site-menu js-clone-nav d-none d-lg-block">
-                    <li >
-                      <a href="index.php">Home</a>
-                    </li>
-                    <!-- <li><a href="dj.html">DJs</a></li> -->
-                    <li class="has-children active">
-                      <a href="#">Movie</a>
-                      <ul class="dropdown arrow-top">
-                        <li><a href="nowplaying.php">Now Playing</a></li>
-                        <li><a href="#">Coming Soon</a></li>
-                        <li><a href="#">Ranking</a></li>
-                        <!-- <li class="has-children">
-                          <a href="#">Sub Menu</a>
-                          <ul class="dropdown">
-                            <li><a href="#">Menu One</a></li>
-                            <li><a href="#">Menu Two</a></li>
-                            <li><a href="#">Menu Three</a></li>
-                          </ul>
-                        </li> -->
-                      </ul>
-                    </li>
-                    <li><a href="events.html">News</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html">Login</a></li>
-                  </ul>
+                  <li class="">
+                    <a href="index.php">Home</a>
+                  </li>
+                  <li class="active has-children">
+                    <a href="#">Movie</a>
+                    <ul class="dropdown arrow-top">
+                      <li><a href="selectdate.php">Schedule</a></li>
+                      <li><a href="nowplaying.php">Now Playing</a></li>
+                      <li><a href="#">Coming Soon</a></li>
+                      <li><a href="ranking.php">Ranking</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="events.html">News</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  
+                </ul>
             </nav>
           </div>
         </div>
@@ -124,7 +122,7 @@ $movieTime = $movie->displayMovieTime2($date);
     <div class="site-mobile-menu-body"></div>
   </div> <!-- .site-mobile-menu -->
 
-  <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url('images/hero_bg_1.jpg');"
+  <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url('images/ave.jpg');"
     data-aos="fade" data-stellar-background-ratio="0.5" data-aos="fade">
     <div class="container">
       <div class="row align-items-center justify-content-center">
@@ -153,111 +151,116 @@ $movieTime = $movie->displayMovieTime2($date);
             foreach($movieTime as $key => $values){
                 $movie_id = $values['movie_id'];
                 $oneMovie = $movie->displayOneMovie($movie_id);
+                $total1 = 0;
+                $total2 = 0;
+                $total3 = 0;
+                $total4 = 0;
                 
                 echo "<a href='single.php?id=".$values['movie_id']."'><h3 class='text-primary title'>".$oneMovie['movie_title']."</h3></a>";
                 echo "<br>";
                 echo "<h4 class=''>".$oneMovie['movie_screen']."</h3>";
                 echo "<div class='row'>";
 
-                echo "<div class='col-3 bg-white m-2'><a href='ticket.php?id=".$oneMovie['movie_id']."&date=".$date."&time=".$values['movie_start1']." '>";
+                echo "<div class='col-3 bg-white m-2'><a href='ticket.php?id=".$oneMovie['movie_id']."&date=".$d."&time=".$values['movie_start1']." '>";
                     echo "<h3 class='text-black'>".$values['movie_start1']."</h3>"; 
                     echo "<h6 class='finish'> ~".$values['movie_finish1']."</h6>";
-                    $ticketInfo = $movie->displayTicketInfo($movie_id,$date,$values['movie_start1']);
+                    $ticketInfo = $movie->displayTicketInfo($movie_id,$d,$values['movie_start1']);
                     foreach($ticketInfo as $key => $value){
-                        $total = $total + $value['ticket_total'];
+                        $total1 = $total1 + $value['ticket_total'];
                     }
-                    if($total<=3){
-                        echo "<h3 class='font'><i class='far fa-dot-circle'></i></h3>";
-                    }elseif($total<=6){
-                        echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
-                    }elseif($total<=8){
-                        echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                        echo "<h3>".$total." tickets left</h3>";
-                    }elseif($total==9){
-                        echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                        echo "<h3>".$total." ticket left</h3>";
-                    }elseif($total>=10){
-                        echo "<h3 class='font'><i class='fas fa-times'></i></h3>";
-                        echo "<h3>SOLD OUT</h3>";
+                    if($total1<=3){
+                      echo "<h3 class='font'><i class='far fa-dot-circle'></i></h3>";
+                    }elseif($total1<=6){
+                       echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
+                    }elseif($total1<=8){
+                       echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
+                       echo "<h5 class=''>left :".(10-$total1)."</h5>";
+                    }elseif($total1==9){
+                       echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
+                       echo "<h5 class=''>left :1</h5>";
+                    }elseif($total1>=10){
+                       echo "<h3 class='font'><i class='fas fa-times'></i></h3>";
+                       echo "<h5>SOLD OUT</h5>";
                     }
                 echo "</a></div>";
                 if($values['movie_start2']== '00:00:00'){
 
                 }else{
-                  echo "<div class='col-3 bg-white m-2'><a href='ticket.php?id=".$oneMovie['movie_id']."&date=".$date."&time=".$values['movie_start2']."'>";
+                  echo "<div class='col-3 bg-white m-2'><a href='ticket.php?id=".$oneMovie['movie_id']."&date=".$d."&time=".$values['movie_start2']."'>";
                    echo "<h3 class='text-black'>".$values['movie_start2']."</h5>"; 
-                   echo "<h6 class='finish'>".$values['movie_finish2']."</h5>";
-                   $ticketInfo = $movie->displayTicketInfo($movie_id,$date,$values['movie_start2']);
-                   foreach($ticketInfo as $key => $values){
-                      $total = $total + $values['ticket_total'];
+                   echo "<h6 class='finish'> ~".$values['movie_finish2']."</h5>";
+                   $ticketInfo = $movie->displayTicketInfo($movie_id,$d,$values['movie_start2']);
+                   foreach($ticketInfo as $key => $value){
+                      $total2 = $total2 + $value['ticket_total'];
                     }
-                   if($total<=3){
-                     echo "<h3 class='font'><i class='far fa-dot-circle'></i></h3>";
-                   }elseif($total<=6){
-                      echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
-                   }elseif($total<=8){
-                      echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                      echo "<h3>".$total." tickets left</h3>";
-                   }elseif($total==9){
-                      echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                      echo "<h3>".$total." ticket left</h3>";
-                   }elseif($total>=10){
-                      echo "<h3 class='font'><i class='fas fa-times'></i></h3>";
-                      echo "<h3>SOLD OUT</h3>";
-                   }
+                    
+                    if($total2<=3){
+                      echo "<h3 class='font'><i class='far fa-dot-circle'></i></h3>";
+                    }elseif($total2<=6){
+                       echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
+                    }elseif($total2<=8){
+                       echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
+                       echo "<h5 class=''>left :".(10-$total2)."</h5>";
+                    }elseif($total2==9){
+                       echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
+                       echo "<h5 class=''>left :1</h5>";
+                    }elseif($total2>=10){
+                       echo "<h3 class='font'><i class='fas fa-times'></i></h3>";
+                       echo "<h5>SOLD OUT</h5>";
+                    }
                   echo "</a></div>";
-                }
+                } 
 
                 if($values['movie_start3']== '00:00:00'){
 
                 }else{
-                  echo "<div class='col-3 bg-white m-2'><a href='ticket.php?id=".$oneMovie['movie_id']."&date=".$date."&time=".$values['movie_start3']."'>";
+                  echo "<div class='col-3 bg-white m-2'><a href='ticket.php?id=".$oneMovie['movie_id']."&date=".$d."&time=".$values['movie_start3']."'>";
                    echo "<h3 class='text-black'>".$values['movie_start3']."</h5>"; 
-                   echo "<h6 class='finish'>".$values['movie_finish3']."</h5>";
-                   $ticketInfo = $movie->displayTicketInfo($movie_id,$date,$values['movie_start3']);
-                   foreach($ticketInfo as $key => $values){
-                      $total = $total + $values['ticket_total'];
+                   echo "<h6 class='finish'> ~".$values['movie_finish3']."</h5>";
+                   $ticketInfo = $movie->displayTicketInfo($movie_id,$d,$values['movie_start3']);
+                    foreach($ticketInfo as $key => $value){
+                        $total3 = $total3 + $value['ticket_total'];
                     }
-                   if($total<=3){
-                     echo "<h3 class='font'><i class='far fa-dot-circle'></i></h3>";
-                   }elseif($total<=6){
-                      echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
-                   }elseif($total<=8){
-                      echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                      echo "<h3>".$total." tickets left</h3>";
-                   }elseif($total==9){
-                      echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                      echo "<h3>".$total." ticket left</h3>";
-                   }elseif($total>=10){
-                      echo "<h3 class='font'><i class='fas fa-times'></i></h3>";
-                      echo "<h3>SOLD OUT</h3>";
-                   }
+                    if($total3<=3){
+                      echo "<h3 class='font'><i class='far fa-dot-circle'></i></h3>";
+                    }elseif($total3<=6){
+                       echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
+                    }elseif($total3<=8){
+                       echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
+                       echo "<h5 class=''>left :".(10-$total3)."</h5>";
+                    }elseif($total3==9){
+                       echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
+                       echo "<h5 class=''>left :1</h5>";
+                    }elseif($total3>=10){
+                       echo "<h3 class='font'><i class='fas fa-times'></i></h3>";
+                       echo "<h5>SOLD OUT</h5>";
+                    }
                   echo "</a></div>";
                 }
                 if($values['movie_start4']== '00:00:00'){
 
                 }else{
-                  echo "<div class='col-3 bg-white m-2'><a href='ticket.php?id=".$oneMovie['movie_id']."&date=".$date."&time=".$values['movie_start4']."'>";
+                  echo "<div class='col-3 bg-white m-2'><a href='ticket.php?id=".$oneMovie['movie_id']."&date=".$d."&time=".$values['movie_start4']."'>";
                    echo "<h3 class='text-black'>".$values['movie_start4']."</h5>"; 
-                   echo "<h6 class='finish'>".$values['movie_finish4']."</h5>";
-                   $ticketInfo = $movie->displayTicketInfo($movie_id,$date,$values['movie_start4']);
-                   foreach($ticketInfo as $key => $values){
-                      $total = $total + $values['ticket_total'];
+                   echo "<h6 class='finish'> ~".$values['movie_finish4']."</h5>";
+                   $ticketInfo = $movie->displayTicketInfo($movie_id,$d,$values['movie_start4']);
+                   foreach($ticketInfo as $key => $value){
+                      $total4 = $total4 + $value['ticket_total'];
                     }
-                   if($total<=3){
-                     echo "<h3 class='font'><i class='far fa-dot-circle'></i></h3>";
-                   }elseif($total<=6){
-                      echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
-                   }elseif($total<=8){
-                      echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                      echo "<h3>".$total." tickets left</h3>";
-                   }elseif($total==9){
-                      echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
-                      echo "<h3>".$total." ticket left</h3>";
-                   }elseif($total>=10){
-                      echo "<h3 class='font'><i class='fas fa-times'></i></h3>";
-                      echo "<h3>SOLD OUT</h3>";
-                   }
+                    if($total4<=3){
+                      echo "<h3 class='font'><i class='far fa-dot-circle'></i></h3>";
+                    }elseif($total4<=6){
+                       echo "<h3 class='font'><i class='far fa-circle'></i></h3>";
+                    }elseif($total4<=8){
+                       echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
+                       echo "<h5 class=''>left :".(10-$total4)."</h5>";
+                    }elseif($total4==9){
+                       echo "<h3 class='font'><i class='fas fa-exclamation-triangle'></i></h3>";
+                       echo "<h5 class=''>left :1</h5>";
+                    }elseif($total4>=10){
+                       echo "<h3 class='font'><i class='fas fa-times'></i></h3>";
+                       echo "<h5>SOLD OUT</h5>";
+                    }
                   echo "</a></div>";
                 }
                 echo "</div>";

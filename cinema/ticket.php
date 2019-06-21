@@ -1,6 +1,15 @@
 <?php
     
-
+    require 'functions/movie.php';
+    $movie = new Movie;
+    $id = $_GET['id'];
+      $date = $_GET['date'];
+      $time = $_GET['time'];
+      $total = 0;
+      $ticketInfo = $movie->displayTicketInfo($id,$date,$time);
+      foreach($ticketInfo as $key => $value){
+        $total = $total + $value['ticket_total'];
+      }
     if(isset($_POST['buy'])){
       $id = $_GET['id'];
       $date = $_GET['date'];
@@ -9,8 +18,15 @@
       $ticket_student = $_POST['student'];
       $ticket_adult = $_POST['adult'];
       $ticket_total = $ticket_child + $ticket_student + $ticket_adult;
-      header('Location:user_info.php?id='.$id.'&date='.$date.'&time='.$time.'&child='.$ticket_child.'&adult='.$ticket_adult.'&student='.$ticket_student.'&total='.$ticket_total);
+      if(($total+$ticket_total)>10){
+        $over = ($total+$ticket_total)-10;
+        echo "<h1 class='text-danger'>NOT AVAILABLE : ".$over." TICKETS OVER </h1>";
+      }else{
+        header('Location:user_info.php?id='.$id.'&date='.$date.'&time='.$time.'&child='.$ticket_child.'&adult='.$ticket_adult.'&student='.$ticket_student.'&total='.$ticket_total);
+      }
+      
     }
+    $date = $_GET['date'];
 
     //$result = buyTicket($ticket_child,$ticket_student,$ticket_adult);
 
@@ -32,7 +48,7 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Oswald:400,700">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
-
+  <script src="https://kit.fontawesome.com/eae8868682.js"></script>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="css/jquery-ui.css">
@@ -53,6 +69,10 @@
           text-align: center;
           margin-top: 5%;
       }
+      .center{
+        text-align:center;
+        color:red;
+      }
   </style>
 
 </head>
@@ -67,7 +87,7 @@
       <div class="container py-1">
         <div class="row align-items-center">
           <div class="col-8 col-md-8 col-lg-4">
-            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>Deejee<span
+            <h1 class="mb-0"><a href="index.php" class="text-white h2 mb-0"><strong>Cinema<span
                     class="text-primary">.</span></strong></a></h1>
           </div>
           <div class="col-4 col-md-4 col-lg-8">
@@ -76,31 +96,25 @@
               <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#"
                   class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
-              <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li>
-                  <a href="index.html">Home</a>
-                </li>
-                <li><a href="dj.html">DJs</a></li>
-                <li class="has-children">
-                  <a href="shows.html">Shows</a>
-                  <ul class="dropdown arrow-top">
-                    <li><a href="#">Top 20 of The Week</a></li>
-                    <li><a href="#">Featured Artist</a></li>
-                    <li><a href="#">Interviews</a></li>
-                    <li class="has-children">
-                      <a href="#">Sub Menu</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="active"><a href="events.html">Events</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-              </ul>
+                  <ul class="site-menu js-clone-nav d-none d-lg-block">
+                  <li class="">
+                    <a href="index.php">Home</a>
+                  </li>
+                  <li class="has-children">
+                    <a href="#">Movie</a>
+                    <ul class="dropdown arrow-top">
+                      <li><a href="selectdate.php">Schedule</a></li>
+                      <li><a href="nowplaying.php">Now Playing</a></li>
+                      <li><a href="#">Coming Soon</a></li>
+                      <li><a href="ranking.php">Ranking</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="events.html">News</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  
+                </ul>
+                
             </nav>
           </div>
         </div>
@@ -117,7 +131,7 @@
     <div class="site-mobile-menu-body"></div>
   </div> <!-- .site-mobile-menu -->
 
-  <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url('images/hero_bg_1.jpg');"
+  <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url('images/ave.jpg');"
     data-aos="fade" data-stellar-background-ratio="0.5" data-aos="fade">
     <div class="container">
       <div class="row align-items-center justify-content-center">
@@ -137,7 +151,7 @@
           <div class="form-group col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="100">
             <a href="single.html"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
             <div class="p-4 bg-white">
-                <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
+                <span class="d-block text-secondary small text-uppercase"><?php echo $date; ?></span>
                 <h2 class="h5 text-black mb-3"><a href="single.html">Child & Senior  /  300php</a></h2>
                 <input class="w-100" type="number" name="child" id="" value="0">
             </div>
@@ -147,7 +161,7 @@
             <div class="form-group col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="200">
                 <a href="single.html"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
                 <div class="p-4 bg-white">
-                    <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
+                    <span class="d-block text-secondary small text-uppercase"><?php echo $date; ?></span>
                     <h2 class="h5 text-black mb-3"><a href="single.html">Student  /  500php</a></h2>
                     <input class="w-100" type="number" name="student" id="" value="0">
                 </div>
@@ -155,12 +169,31 @@
             <div class="form-group col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="300">
                 <a href="single.html"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
                 <div class="p-4 bg-white">
-                    <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
+                    <span class="d-block text-secondary small text-uppercase"><?php echo $date; ?></span>
                     <h2 class="h5 text-black mb-3"><a href="single.html">Adult / 700php</a></h2>
                     <input class="w-100" type="number" name="adult" id="" value="0">
                 </div>
             </div>
         </div>
+        <?php
+        $total = 0;
+          $ticketInfo = $movie->displayTicketInfo($id,$date,$time);
+          foreach($ticketInfo as $key => $value){
+             $total = $total + $value['ticket_total'];
+           }
+           if($total<=3){
+           }elseif($total<=6){
+           }elseif($total<=8){
+              echo "<h3 class='font center'><i class='fas fa-exclamation-triangle'></i></h3>";
+              echo "<h3 class=' center'>left :".(10-$total)."</h5>";
+           }elseif($total==9){
+              echo "<h3 class='font center'><i class='fas fa-exclamation-triangle'></i></h3>";
+              echo "<h3 class=' center'>left :1</h5>";
+           }elseif($total>=10){
+              echo "<h3 class='font center'><i class='fas fa-times'></i></h3>";
+              echo "<h3 class = ' center'>SOLD OUT</h5>";
+           }
+        ?>
         <div class="w-100 submit">
             <input type="submit" name="buy" value="BUY TICKET" class="btn btn-primary text-white p-2 mx-auto">
         </div>

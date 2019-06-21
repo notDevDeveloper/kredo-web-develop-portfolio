@@ -12,58 +12,73 @@ $total1 = 0;
 $total2 = 0;
 $total3 = 0;
 $total4 = 0;
-
+$x=0;
 
 
 foreach($movies as $key => $values){
    $movie_id = $values['movie_id'];
-   
-   for ($i = -7; $i < 0; $i++) {
+  
+   for ($i = -6; $i < 1; $i++) {
+        
         $date = date("w", strtotime("+$i day"));
         $day = date("Y/m/d", strtotime("+$i day"));
         $movieTime = $movie->displayMovieTime3($movie_id,$date);
+
         $time = $movieTime['movie_start1'];
         $ticketInfo = $movie->displayTicketInfo($movie_id,$day,$time);
         foreach($ticketInfo as $key => $values){
             $total1 = $total1 + $values['ticket_total'];
         }
+        
         $time = $movieTime['movie_start2'];
         $ticketInfo = $movie->displayTicketInfo($movie_id,$day,$time);
         foreach($ticketInfo as $key => $values){
             $total2 = $total2 + $values['ticket_total'];
         }
+        
         $time = $movieTime['movie_start3'];
         $ticketInfo = $movie->displayTicketInfo($movie_id,$day,$time);
         foreach($ticketInfo as $key => $values){
             $total3 = $total3 + $values['ticket_total'];
         }
+        
         $time = $movieTime['movie_start4'];
         $ticketInfo = $movie->displayTicketInfo($movie_id,$day,$time);
         foreach($ticketInfo as $key => $values){
             $total4 = $total4 + $values['ticket_total'];
         }
-        $daytotal[] = $total1 + $total2 + $total3 + $total4;
+        
+        $daytotal1 = $total1 + $total2 + $total3 + $total4;
+        $daytotal[] = $daytotal1;
+        
         $total1 = 0;
         $total2 = 0;
         $total3 = 0;
         $total4 = 0;
     }
+    
     $weektotal = 0;
     for ($i = 0; $i < 7; $i++) {
-        $weektotal = $weektotal + $daytotal[$i];
+        
+        $weektotal = $weektotal + $daytotal[$x];
+        $x++;
     }
+   
     $record[] = array("weektotal"=>$weektotal,"movie_id"=>$movie_id) ;
 }
-print_r($record);
-echo "<br>";
+
+
 arsort($record);
-print_r($record);
+
 //echo $record;
-$id = $record[0]['movie_id']; 
+foreach($record as $key => $values){
+  $ranking[] = $values['movie_id'];
+}
+$id = $ranking[0]; 
 $oneMovie1 = $movie->displayOneMovie($id);
-$id = $record[1]['movie_id']; 
+$id = $ranking[1]; 
 $oneMovie2 = $movie->displayOneMovie($id);
-$id = $record[2]['movie_id']; 
+$id = $ranking[2]; 
 $oneMovie3 = $movie->displayOneMovie($id);
 
 
@@ -109,6 +124,10 @@ $oneMovie3 = $movie->displayOneMovie($id);
     .col-3{
       padding:5% 10% 5% 5%;
     }
+    .ranking{
+      text-align:center;
+      margin:8% auto;
+    }
   </style>
 
 </head>
@@ -133,32 +152,23 @@ $oneMovie3 = $movie->displayOneMovie($id);
                   class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
                   <ul class="site-menu js-clone-nav d-none d-lg-block">
-                    <li >
-                      <a href="index.php">Home</a>
-                    </li>
-                    <!-- <li><a href="dj.html">DJs</a></li> -->
-                    <li class="has-children active">
-                      <a href="#">Movie</a>
-                      <ul class="dropdown arrow-top">
-                        <li><a href="scheduledate.php">Schedule</a></li>
-                        <li><a href="nowplaying.php">Now Playing</a></li>
-                        <li><a href="comingsoon.php">Coming Soon</a></li>
-                        <li><a href="ranking.php">Ranking</a></li>
-                        <!-- <li class="has-children">
-                          <a href="#">Sub Menu</a>
-                          <ul class="dropdown">
-                            <li><a href="#">Menu One</a></li>
-                            <li><a href="#">Menu Two</a></li>
-                            <li><a href="#">Menu Three</a></li>
-                          </ul>
-                        </li> -->
-                      </ul>
-                    </li>
-                    <li><a href="events.html">News</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html">Login</a></li>
-                  </ul>
+                  <li class="">
+                    <a href="index.php">Home</a>
+                  </li>
+                  <li class="has-children active">
+                    <a href="#">Movie</a>
+                    <ul class="dropdown arrow-top">
+                      <li><a href="selectdate.php">Schedule</a></li>
+                      <li><a href="nowplaying.php">Now Playing</a></li>
+                      <li><a href="#">Coming Soon</a></li>
+                      <li><a href="ranking.php">Ranking</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="events.html">News</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  
+                </ul>
             </nav>
           </div>
         </div>
@@ -190,8 +200,9 @@ $oneMovie3 = $movie->displayOneMovie($id);
 
     <div class="site-section">
         <div class="container">
-
+        <h1  class="text-primary ranking">TOP 1</h1>
             <div class="row">
+            
                 <div class="col-lg-6">
         
                     <figure>
@@ -219,8 +230,9 @@ $oneMovie3 = $movie->displayOneMovie($id);
                     <?php echo "<a href='schedule.php?id=".$oneMovie1['movie_id']."' class='btn btn-primary text-white p-2 my-3'>Look Schedule</a>";?>  
                 </div>
             </div>
-
+            <h1  class="text-primary ranking">TOP 2</h1>
             <div class="row">
+            
                 <div class="col-lg-6">
         
                     <figure>
@@ -248,8 +260,10 @@ $oneMovie3 = $movie->displayOneMovie($id);
                     <?php echo "<a href='schedule.php?id=".$oneMovie2['movie_id']."' class='btn btn-primary text-white p-2 my-3'>Look Schedule</a>";?>  
                 </div>
             </div>
+            <h1  class="text-primary ranking">TOP 3</h1>
 
             <div class="row">
+            
                 <div class="col-lg-6">
         
                     <figure>
