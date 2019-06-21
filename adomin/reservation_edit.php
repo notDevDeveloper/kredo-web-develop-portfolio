@@ -208,7 +208,8 @@
               <div class="row">
                 <div class="col-md-6 form-group  mx-auto d-block">
                   <input type="submit" name="edit" value="Edit" class="btn btn-primary text-dark m-2 py-3 px-5 font-weight-bold d-line-block">
-                  <a href="reservation_table.php" type="submit" name="reservation" value="Reserve Now" class="btn btn-outline-dark  py-3 px-5 font-weight-bold">Back</a>
+                  <!-- <a href="reservation_table.php" type="submit" name="reservation" value="Reserve Now" class="btn btn-outline-dark  py-3 px-5 font-weight-bold">Back</a> -->
+                  <a href="reservation_table.php" class="btn btn-dark text-white form-control mt-1" role="button">Back</a>
                 </div>
               </div>
             </form>

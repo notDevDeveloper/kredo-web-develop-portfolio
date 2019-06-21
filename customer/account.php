@@ -87,6 +87,14 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="../css/style.css">
+
+
+    <style>
+    .scroll {
+      overflow: scroll;
+    }
+    
+    </style>
   </head>
   <body>
     
@@ -117,7 +125,7 @@
                         <li><a href="contact.php">Contact</a></li>
                         <li><a href="reservation.php">Reservation</a></li>
                         <!-- <li><a href="login.php">Login</a></li> -->
-                        <li><a href="signup.php">Signup</a></li>
+                        <li><a href="signup.php">Sign up</a></li>
                         <li class="active"><a href="account.php">My account</a></li>
                         <li><a href="logout.php">Logout</a></li>
                       </ul>
@@ -223,6 +231,7 @@
 
             <body>
     <div class="container">
+      <div class="scroll">
         <table class="table table-striped">
             <h1 class="display-3"> Reservation list</h1>
             <br>
@@ -282,12 +291,13 @@
 
                     }
                 ?>
-            </tbody> 
-      
-            
-          </table>  
-          </div>
+              </tbody> 
         
+              
+            </table>  
+            </div>
+          
+          </div>
         </div>
       </div>
     </section>

@@ -99,7 +99,7 @@
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
             <span class="custom-caption text-uppercase text-white d-block  mb-3">Hello</span>
-            <h1 class="heading">Let's work hard today</h1>
+            <h1 class="heading">Sign up Form</h1>
           </div>
         </div>
       </div>
@@ -141,10 +141,12 @@
                 <label for="">Type Here</label>
                 <input type="text" name="confirm" id="" class="form-control">
             </div> -->
-            <div class="form-group">
-              <a class="btn btn-danger text-white form-control" href="account.php" role="button">Signup</a>
-              <input type="submit" value="Back" name="submit" class="btn btn-outline-dark pull-right form-control">
-            </div>
+            <div class="row">
+              <div class="form-group">
+                <a class="btn btn-danger col-6 text-white form-control" href="account.php" role="button">Signup</a>
+                <input type="submit" value="Back" name="submit" class="btn btn-outline-dark col-6 form-control">
+              </div>
+            </div>  
         </form>
     </div>
     <br><br><br>

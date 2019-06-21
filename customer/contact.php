@@ -53,7 +53,7 @@
                         <li class="active"><a href="contact.php">Contact</a></li>
                         <li><a href="reservation.php">Reservation</a></li>
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="signup.php">Signup</a></li>
+                        <li><a href="signup.php">Sign up</a></li>
                         <li><a href="account.php">My account</a></li>
                         <li><a href="logout.php">Logout</a></li>
                       </ul>

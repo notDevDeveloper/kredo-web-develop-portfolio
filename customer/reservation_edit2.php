@@ -47,10 +47,15 @@
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
                         <li><a href="index.php">Home</a></li>
-                        <li class="active"><a href="reservation_table.php">Reservation</a></li>
-                        <li><a href="customer.php">Customer</a></li>
-                        <li><a href="login.php">login</a></li>
-                        <li><a href="login.php">logout</a></li>
+                        <li><a href="rooms.php">Rooms</a></li>
+                        <li><a href="about.php">About</a></li>
+                        <li><a href="events.php">Events</a></li>
+                        <li><a href="contact.php">Contact</a></li>
+                        <li  class="active"><a href="reservation.php">Reservation</a></li>
+                        <!-- <li><a href="login.php">Login</a></li> -->
+                        <li><a href="signup.php">Sign up</a></li>
+                        <li><a href="account.php">My account</a></li>
+                        <li><a href="logout.php">Logout</a></li>
                       </ul>
                     </div>
                   </div>

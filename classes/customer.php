@@ -148,7 +148,7 @@
             $t1 = strtotime($datatoday);  // 現在の時間
             $t2 = strtotime($reservation_check_in);
             $seconddiff = abs($t2 - $t1);
-            $daydiff = $seconddiff / (60 * 60 *24);
+            $daydiff = $seconddiff / (60 * 60 * 24);
             return $daydiff;
         }
 

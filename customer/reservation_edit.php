@@ -7,24 +7,9 @@
     $reservations = $reservation->displayOneReservation($id);
 
 
-    function day_diff($date1, $date2) {
-      // 日付をUNIXタイムスタンプに変換
-      $timestamp1 = strtotime($date1);
-      $timestamp2 = strtotime($date2);
-
-      // 何秒離れているかを計算
-      $seconddiff = abs($timestamp2 - $timestamp1);
-
-      // 日数に変換
-      $daydiff = $seconddiff / (60 * 60 * 24);
-
-      // 戻り値
-      return $daydiff;
-    }
-
 
     $datetoday = date('Y-m-d');  //予約変更したいときの日時
-    $check = $reservation->checkCansell($daytoday,$details['reservation_check_in']);
+    $check = $reservation->checkCansell($datetoday,$reservations['reservation_check_in']);
     if($check < 3){
       header ('Location: reservation_edit2.php');
     }
@@ -39,9 +24,7 @@
 
       
       $result = $reservation->updateReservation($reservation_check_in,$reservation_check_out,$reservation_adult,$reservation_children,$reservation_room_name,$id);
-      if($cansellling < 3){
-        echo $result;
-      }elseif($result){
+      if($result){
         header('Location: account.php');
       }else{
         echo "Unsuccessful!";
@@ -50,8 +33,6 @@
 
     }
 
-    $cansellling = abs($datetoday - $reservation_check_in);
-    $cansellling < 3;
 
      
 
@@ -113,14 +94,14 @@
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                      <li><a href="index.php">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
                         <li><a href="rooms.php">Rooms</a></li>
                         <li><a href="about.php">About</a></li>
                         <li><a href="events.php">Events</a></li>
                         <li><a href="contact.php">Contact</a></li>
                         <li><a href="reservation.php">Reservation</a></li>
                         <!-- <li><a href="login.php">Login</a></li> -->
-                        <li><a href="signup.php">Signup</a></li>
+                        <li><a href="signup.php">Sign up</a></li>
                         <li class="active"><a href="account.php">My account</a></li>
                         <li><a href="logout.php">Logout</a></li>
                       </ul>
@@ -230,7 +211,7 @@
                 <div class="form-group">
                     <div class="col-md-3 d-inline-block">
                       <input type="submit" name="edit" value="Reserve Now" class="btn btn-primary text-white py-3 px-5 font-weight-bold">
-                      <a href="account.php" type="submit" value="edit" name="edit" class="btn btn-dark py-3 px-5 m-2 font-weight-bold">Back</a>
+                      <a class="btn btn-dark text-white form-control mt-1" href="account.php" role="button">Back</a>
                     </div> 
                 </div>
               </div>
